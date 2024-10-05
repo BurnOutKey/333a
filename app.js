@@ -8,7 +8,7 @@ app.use(express.json());
 
 app.get("/ping", async (req, res) => {
   console.log("pinged")
-  return res.send(`alive2`);
+  return res.send(`2alive2`);
 });
 
 app.listen(port);
@@ -154,6 +154,6 @@ console.log(text)
 };
 
 setInterval(() => {
- sendReq(`https://api.moomoo.io/servers?v=1.22`, 130);
-sendReq(`https://api-sandbox.moomoo.io/servers?v=1.22`, 130);
+ sendReq(`https://api.moomoo.io/servers?v=1.22`, 35);
+sendReq(`https://api-sandbox.moomoo.io/servers?v=1.22`, 35);
 }, 70e3);
