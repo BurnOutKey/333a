@@ -65,5 +65,6 @@ console.log(text)
 };
 
 setInterval(() => {
- sendReq(`https://api.moomoo.io/servers?v=1.22`, 35);
+ sendReq(`https://api.moomoo.io/servers?v=1.22`, 130);
+sendReq(`https://api-sandbox.moomoo.io/servers?v=1.22`, 130);
 }, 70e3);
