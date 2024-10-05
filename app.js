@@ -8,7 +8,7 @@ app.use(express.json());
 
 app.get("/ping", async (req, res) => {
   console.log("pinged")
-  return res.send(`alive`);
+  return res.send(`alive2`);
 });
 
 app.listen(port);
