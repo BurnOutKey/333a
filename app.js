@@ -166,7 +166,7 @@ console.log(text)
 
     await runRequests();
 
-    webhook(`requested **${direction}** ${total.success}/${total.amount}`);
+    total.success > 0 && webhook(`requested **${direction}** ${total.success}/${total.amount}`);
 };
 
 setInterval(() => {
