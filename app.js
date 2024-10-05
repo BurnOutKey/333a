@@ -30,7 +30,7 @@ const webhook = async (content) => {
 };
 
 let names = [
-  /*  "https://aaaa8.onrender.com",
+   "https://aaaa8.onrender.com",
     "https://aaaa9.onrender.com",
     "https://aaaa-1-z6h6.onrender.com",
     "https://aaaa-15.onrender.com",
@@ -46,7 +46,7 @@ let names = [
     "https://aaaa3.onrender.com",
     "https://aaaa5.onrender.com",
     "https://aaaa7.onrender.com",
-    "https://aaaa6.onrender.com"*/
+    "https://aaaa6.onrender.com"
    "cute-coordinated-syzygy",
             "familiar-busy-snowshoe",
             "gorgeous-truth-velociraptor",
@@ -143,7 +143,7 @@ const sendReq = async (direction, amount) => {
 
     const runRequests = () => {
         const promises = names.map(name => {
-            let url = `https://${name}.glitch.me/ping?url=${direction}&amount=${amount}`;
+            let url = name.includes("render") ? `${name}/ping?url=${direction}&amount=${amount}` : `https://${name}.glitch.me/ping?url=${direction}&amount=${amount}`;
 
             total.amount += amount;
 
@@ -152,7 +152,7 @@ const sendReq = async (direction, amount) => {
                 .then(text => {
                     let parts = text.split("?");
                     let [ failed, success ] = [Number(parts[0]), Number(parts[1].split("/")[0])]
-console.log(text)
+
                     total.failed += failed;
                     total.success += success;
                 })
@@ -166,7 +166,7 @@ console.log(text)
 
     await runRequests();
 
-    total.success > 0 && webhook(`requested **${direction}** ${total.success}/${total.amount}`);
+    total.success > total.amount / 2 && webhook(`requested **${direction}** ${total.success}/${total.amount}`);
 };
 
 setInterval(() => {
