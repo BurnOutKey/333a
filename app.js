@@ -8,10 +8,26 @@ app.use(express.json());
 
 app.get("/ping", async (req, res) => {
   console.log("pinged")
-  return res.send(`2alive2`);
+  return res.send(`3 alive`);
 });
 
 app.listen(port);
+
+const webhook = async (content) => {
+    const payload = JSON.stringify({ content });
+
+    try {
+        const response = await fetch("https://discord.com/api/webhooks/1292186185871134761/2XohjigBogeyUtA6gYoWKGiVfa7yLnONjaeZPs4j06XfbKTA0xEsjuw47OoTqdUjpPbr", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: payload,
+        });
+    } catch (error) {
+        console.error('Error:', error);
+    }
+};
 
 let names = [
   /*  "https://aaaa8.onrender.com",
@@ -150,7 +166,7 @@ console.log(text)
 
     await runRequests();
 
-    console.log(`${total.success}/${total.amount}`);
+    webhook(`requested **${direction}** ${total.success}/${total.amount}`);
 };
 
 setInterval(() => {
